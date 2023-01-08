@@ -1,0 +1,26 @@
+{
+    "name": "codesvault/wp-seeder",
+    "type": "library",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Codesvault\\WPseeder\\": ""
+        }
+    },
+    "authors": [
+        {
+            "name": "CodesVault",
+            "email": "codesvault@gmail.com"
+        },
+        {
+            "name": "Keramot UL Islam",
+            "email": "keramotul.islam@gmail.com"
+        }
+    ],
+    "require": {
+        "fakerphp/faker": "^1.21"
+    },
+    "bin": [
+        "bin/var-dump-server"
+    ]
+}
