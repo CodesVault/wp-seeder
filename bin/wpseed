@@ -1,0 +1,37 @@
+#!/usr/bin/env php
+<?php
+
+use CodesVault\Howdyqb\DB;
+
+
+require 'vendor/autoload.php';
+
+$file = file_get_contents('./.env', true);
+$content = explode("\n", $file);
+$data = [];
+
+foreach($content as $env) {
+    if (empty($env)) continue;
+
+    $env_arr = explode('=', $env);
+    $data[$env_arr[0]] = $env_arr[1];
+}
+print_r(is_dir("vendor") . "\n");
+// die();
+// global $wpdb;
+// print_r("Hello");
+// print_r($wpdb);
+// $faker = Faker\Factory::create();
+// DB::insert('posts', [
+//     [
+//         'post_title' => $faker->unique()->words(10, true),
+//         'post_content' => "<!-- wp:paragraph -->
+//         <p>{$faker->unique()->paragraph(4)}</p>
+//         <!-- /wp:paragraph -->",
+//         'post_status' => 'publish',
+//         'post_excerpt' => '',
+//         'to_ping' => '',
+//         'pinged' => '',
+//         'post_content_filtered' => ''
+//     ]
+// ]);
