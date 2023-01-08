@@ -21,6 +21,6 @@
         "fakerphp/faker": "^1.21"
     },
     "bin": [
-        "bin/var-dump-server"
+        "bin/wpseed"
     ]
 }
