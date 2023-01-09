@@ -6,9 +6,14 @@ use Codesvault\WPseeder\Core\DBSeed;
 
 require 'vendor/autoload.php';
 
-define("WPS_ROOT_DIR", dirname(__DIR__) . "../..");
+define("WPS_ROOT_DIR", getcwd());
 
-(new DBSeed)->execute();
+$wp_root_dir = explode("wp-content", getcwd());
+require("$wp_root_dir[0]/wp-config.php");
+define("WPS_TABLE_PREFIX", $table_prefix);
+
+// (new DBSeed)->execute();
+(new Database)->connectDatabase();
 
 // DB::insert('posts', [
 //     [
