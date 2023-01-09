@@ -19,6 +19,7 @@ class PrepareData
 
         foreach ($seeder_list as $seeder) {
             if ('wpseeder' === $seeder) continue;
+            $start_time = microtime(true);
 
             if (! file_exists(WPS_ROOT_DIR . "/seeders/$seeder.php")) {
                 print_r("\033[31m ERROR: $seeder.php not found.\033[0m");
@@ -34,8 +35,11 @@ class PrepareData
             $this->table_name = $seeder_object->table;
             $this->data[$seeder_object->table][] = $seeder_object->run();
             $this->innerLoop($seeder);
+            $this->insertData();
+            $duration = microtime(true) - $start_time;
+            print_r("\n\033[32m Data inserted in $this->row_count rows within $duration microseconds.\033[0m\n");
         }
-       return $this->data;
+        print_r("\n\033[32m Done.\033[0m \n");
     }
 
     private function innerLoop($seeder)
@@ -47,5 +51,15 @@ class PrepareData
         for ($i = 1; $i < $this->row_count; $i++) {
             $this->data[$this->table_name][] = (new $seeder)->run();
         }
+    }
+
+    private function insertData()
+    {
+        $table = $this->table_name;
+        $table_name = WPS_TABLE_PREFIX . $table;
+        print_r("\n\033[32m Inserting data in " . $table_name . " table...\033[0m");
+    
+        $db = Database::connectDatabase();
+        $db::insert($table, $this->data[$table]);
     }
 }

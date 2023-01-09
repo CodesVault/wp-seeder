@@ -1,5 +1,12 @@
 #!/usr/bin/env php
 <?php
+/**
+ * WP Seed
+ * Database seeder for WordPress.
+ * 
+ * @author CodesVault, Keramot UL Islam <keramotul.islam@gmail.com>
+ * @source https://github.com/CodesVault/wp-seeder
+ */
 
 use Codesvault\WPseeder\Core\DBSeed;
 
@@ -12,4 +19,3 @@ require("$wp_root_dir[0]/wp-config.php");
 define("WPS_TABLE_PREFIX", $table_prefix);
 
 (new DBSeed)->execute();
-// (new Database)->connectDatabase();

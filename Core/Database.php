@@ -2,28 +2,31 @@
 
 namespace Codesvault\WPseeder\Core;
 
+use CodesVault\Howdyqb\DB;
+
 class Database
 {
-    private $dbConnect = null;
+    private static $dbConnect = null;
 
-    public function connectDatabase()
+    public static function connectDatabase()
     {
-        if ($this->dbConnect) {
-            return $this->dbConnect;
+        if (static::$dbConnect) {
+            return static::$dbConnect;
         }
 
-        $configurations = $this->getDbConfig();
-        // TODO: connect with wp_qb
+        $db = new DB;
+        $db->setDBConfig(static::getDbConfig());
+        return static::$dbConnect = $db;
     }
 
-    private function getDbConfig()
+    private static function getDbConfig()
     {
         return [
-            "host"          => DB_HOST,
+            "dbhost"        => DB_HOST,
             "dbname"        => DB_NAME,
-            "user"          => DB_USER,
-            "password"      => DB_PASSWORD,
-            "table_prefix"  => WPS_TABLE_PREFIX
+            "dbuser"        => DB_USER,
+            "dbpassword"    => DB_PASSWORD,
+            "prefix"        => WPS_TABLE_PREFIX
         ];
     }
 }
