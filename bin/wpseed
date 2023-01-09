@@ -1,7 +1,6 @@
 #!/usr/bin/env php
 <?php
 
-use Codesvault\WPseeder\Core\Database;
 use Codesvault\WPseeder\Core\DBSeed;
 
 require 'vendor/autoload.php';
@@ -12,19 +11,5 @@ $wp_root_dir = explode("wp-content", getcwd());
 require("$wp_root_dir[0]/wp-config.php");
 define("WPS_TABLE_PREFIX", $table_prefix);
 
-// (new DBSeed)->execute();
-(new Database)->connectDatabase();
-
-// DB::insert('posts', [
-//     [
-//         'post_title' => $faker->unique()->words(10, true),
-//         'post_content' => "<!-- wp:paragraph -->
-//         <p>{$faker->unique()->paragraph(4)}</p>
-//         <!-- /wp:paragraph -->",
-//         'post_status' => 'publish',
-//         'post_excerpt' => '',
-//         'to_ping' => '',
-//         'pinged' => '',
-//         'post_content_filtered' => ''
-//     ]
-// ]);
+(new DBSeed)->execute();
+// (new Database)->connectDatabase();
