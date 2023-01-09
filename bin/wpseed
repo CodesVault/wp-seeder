@@ -8,11 +8,14 @@
  * @source https://github.com/CodesVault/wp-seeder
  */
 
+use Codesvault\WPseeder\Cli\CliManager;
 use Codesvault\WPseeder\Core\DBSeed;
 
 require 'vendor/autoload.php';
 
 define("WPS_ROOT_DIR", getcwd());
+
+new CliManager($argv);
 
 $wp_root_dir = explode("wp-content", getcwd());
 require("$wp_root_dir[0]/wp-config.php");
