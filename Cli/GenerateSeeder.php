@@ -32,16 +32,21 @@ class GenerateSeeder
 
     private function generateFile()
     {
+        if (! file_exists(WPS_ROOT_DIR . "/seeders/wpseeder.php")) {
+            mkdir(WPS_ROOT_DIR . "/seeders");
+        }
         $file_path = WPS_ROOT_DIR . "/seeders/$this->class_name.php";
         $seeder = fopen($file_path, "w");
-        fwrite($seeder, $this->fileContent());
+        fwrite($seeder, $this->seederClassFileContent());
         fclose($seeder);
         chmod($file_path, 0777);
+
+        $this->registerSeeder();
         print_r("\n\033[32m /seeders/$this->class_name.php generated.\033[0m\n");
         die();
     }
 
-    private function fileContent()
+    private function seederClassFileContent()
     {
         $table = '$table';
         $row = '$row';
@@ -64,6 +69,39 @@ class GenerateSeeder
         }
         TEXT;
 
+        return $content;
+    }
+
+    private function registerSeeder()
+    {
+        $seeder_list = [];
+        $seeders_path = WPS_ROOT_DIR . "/seeders/wpseeder.php";
+        if (file_exists($seeders_path)) {
+            $seeder_list = require($seeders_path);
+        }
+        $seeder = fopen($seeders_path, "w");
+        fwrite($seeder, $this->seederListFileContent($seeder_list));
+        fclose($seeder);
+        chmod($seeders_path, 0777);
+    }
+
+    private function seederListFileContent($list = [])
+    {
+        $seeders_list = '';
+        if (! empty($list)) {
+            $seeders = implode(",", $list);
+            $seeders .= "," . $this->class_name . "::class";
+            $seeders_list = str_replace(",", "::class,\n\t", $seeders) . ",";
+        } else {
+            $seeders_list = $this->class_name . "::class,";
+        }
+        $content = <<<TEXT
+        <?php
+
+        return array(
+            $seeders_list
+        );
+        TEXT;
         return $content;
     }
 }
