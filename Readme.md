@@ -2,7 +2,7 @@
 Add demo data in the Database from terminal.
 
 ## Installation
-It is recommended to install it using composer `composer install codesvault/wp-seeder`.
+It is required to install it using composer `composer install codesvault/wp-seeder`.
 <br>It supports PHP **>= 7.4**
 
 <br>
