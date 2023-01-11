@@ -1,5 +1,8 @@
 {
     "name": "codesvault/wp-seeder",
+    "description": "Database seeder for WordPress",
+    "version": "1.0.0",
+    "minimum-stability": "stable",
     "type": "library",
     "license": "MIT",
     "autoload": {
@@ -18,8 +21,9 @@
         }
     ],
     "require": {
+        "php": ">=7.4",
         "fakerphp/faker": "^1.21",
-        "codesvault/howdy-qb": "^1.1"
+        "codesvault/howdy-qb": "^1.2"
     },
     "bin": [
         "bin/wpseed"
