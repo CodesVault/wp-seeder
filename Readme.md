@@ -6,6 +6,10 @@ It is required to install it using composer `composer install codesvault/wp-seed
 <br>It supports PHP **>= 7.4**
 
 <br>
+
+![WP Seeder Demo](https://abmsourav.com/welcome/wp-content/uploads/2023/01/WP-Seeder-Demo-scaled.gif)
+
+<br>
 <br>
 
 ## Uses
