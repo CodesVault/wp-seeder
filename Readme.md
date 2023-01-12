@@ -7,7 +7,7 @@ It is required to install it using composer `composer install codesvault/wp-seed
 
 <br>
 
-![WP Seeder Demo](https://abmsourav.com/welcome/wp-content/uploads/2023/01/WP-Seeder-Demo-scaled.gif)
+![WP Seeder Demo](https://github.com/CodesVault/wp-seeder/blob/doc/demo/WP%20Seeder%20-%20Demo.gif)
 
 <br>
 <br>
