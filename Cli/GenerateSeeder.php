@@ -6,6 +6,7 @@ class GenerateSeeder
 {
     protected $class_name;
     protected $table_name = "posts";
+    protected $prefix;
     protected $row_count = 1;
 
     public function __construct()
@@ -16,7 +17,7 @@ class GenerateSeeder
 
     private function getInputs()
     {
-        $class_name = readline(" Class Name: " );
+        $class_name = readline("\033[1;34m Class Name:\033[0m " );
         if (! $class_name) {
             print_r("\033[31m Class name is required.\033[0m");
             print_r("\n Exit.\n");
@@ -24,25 +25,32 @@ class GenerateSeeder
         }
         $this->class_name = $class_name;
 
-        $table = readline(" Table Name: " );
+        $table = readline("\033[1;34m Table Name:\033[0m " );
         $this->table_name = $table ? $table : $this->table_name;
-        $row = readline(" Number of rows: " );
+
+        $row = readline("\033[1;34m Number of rows:\033[0m " );
         $this->row_count = $row ? $row : $this->row_count;
     }
 
     private function generateFile()
     {
-        if (! file_exists(WPS_ROOT_DIR . "/seeders/wpseeder.php")) {
-            mkdir(WPS_ROOT_DIR . "/seeders");
+        if (! is_dir(WPSEEDER_ROOT_DIR . "/database")) {
+            print_r("\033[31m /database directory not found.\033[0m");
+            print_r("\n Exit.\n");
+            die();
         }
-        $file_path = WPS_ROOT_DIR . "/seeders/$this->class_name.php";
+        if (! file_exists(WPSEEDER_ROOT_DIR . "/database/seeders")) {
+            mkdir(WPSEEDER_ROOT_DIR . "/database/seeders");
+        }
+
+        $file_path = WPSEEDER_ROOT_DIR . "/database/seeders/$this->class_name.php";
         $seeder = fopen($file_path, "w");
         fwrite($seeder, $this->seederClassFileContent());
         fclose($seeder);
         chmod($file_path, 0777);
 
         $this->registerSeeder();
-        print_r("\n\033[32m /seeders/$this->class_name.php generated.\033[0m\n");
+        print_r("\n\033[32m /database/seeders/$this->class_name.php generated.\033[0m\n");
         die();
     }
 
@@ -57,7 +65,7 @@ class GenerateSeeder
 
         class $this->class_name extends WPSeeder
         {
-            public $table = "$this->table_name";    // db table name without prefix, default is posts.
+            public $table = "$this->table_name";    // db table name without table prefix, default is posts.
             public $row = $this->row_count;      // number of db table row will create, default is 1.
 
             public function run()
@@ -75,7 +83,7 @@ class GenerateSeeder
     private function registerSeeder()
     {
         $seeder_list = [];
-        $seeders_path = WPS_ROOT_DIR . "/seeders/wpseeder.php";
+        $seeders_path = WPSEEDER_ROOT_DIR . "/database/seeders/wpseeder.php";
         if (file_exists($seeders_path)) {
             $seeder_list = require($seeders_path);
         }

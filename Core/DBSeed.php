@@ -6,6 +6,6 @@ class DBSeed
 {
     public function execute()
     {
-        (new PrepareData())->map();
+        (new PrepareData())->store();
     }
 }

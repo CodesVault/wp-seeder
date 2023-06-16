@@ -1,7 +1,7 @@
 #!/usr/bin/env php
 <?php
 /**
- * WP Seed
+ * WP Seeder
  * Database seeder for WordPress.
  * 
  * @author CodesVault, Keramot UL Islam <keramotul.islam@gmail.com>
@@ -11,14 +11,8 @@
 use Codesvault\WPseeder\Cli\CliManager;
 use Codesvault\WPseeder\Core\DBSeed;
 
-require 'vendor/autoload.php';
+require_once $GLOBALS['_composer_autoload_path'];
 
-define("WPS_ROOT_DIR", getcwd());
+define("WPSEEDER_ROOT_DIR", getcwd());
 
 new CliManager($argv);
-
-$wp_root_dir = explode("wp-content", getcwd());
-require("$wp_root_dir[0]/wp-config.php");
-define("WPS_TABLE_PREFIX", $table_prefix);
-
-(new DBSeed)->execute();
