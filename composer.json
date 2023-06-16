@@ -23,7 +23,7 @@
     "require": {
         "php": ">=7.4",
         "fakerphp/faker": "^1.21",
-        "codesvault/howdy-qb": "^1.2"
+        "codesvault/howdy-qb": "^1.3"
     },
     "bin": [
         "bin/wpseed"

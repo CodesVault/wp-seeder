@@ -15,7 +15,7 @@ class Database
         }
 
         $db = new DB;
-        $db->setDBConfig(static::getDbConfig());
+        $db->setConnection(static::getDbConfig());
         return static::$dbConnect = $db;
     }
 
