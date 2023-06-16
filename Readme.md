@@ -3,19 +3,19 @@ Add demo data in the Database from terminal.
 
 ## Installation
 It is required to install it using composer `composer install codesvault/wp-seeder`.
-<br>It supports PHP **>= 7.4**
+<br>It supports PHP **>= 7.1**
 
 <br>
 
-![WP Seeder Demo](https://github.com/CodesVault/wp-seeder/blob/doc/demo/WP%20Seeder%20-%20Demo.gif)
+<!-- ![WP Seeder Demo](https://github.com/CodesVault/wp-seeder/blob/doc/demo/WP%20Seeder%20-%20Demo.gif) -->
 
 <br>
 <br>
 
 ## Uses
-Run `./vendor/bin/wpseed --generate` and provide necessary inputs.
-<br>It will generate `/seeders` directory in the parent directory of your vendor folder. Don't move this directory to other location, it must be here.
-In the `/seeders` folder you will have your seeder which was automatically generated, the file name will be same as the class name that you had given input.
+To create a new seeder, run `./vendor/bin/wpseed new` and provide necessary inputs.
+<br>It will generate `/seeders` directory in `/database` directory. Don't move this directory to other location, it must be here.
+In the `/database/seeders` folder you will have your seeder which was automatically generated, the file name will be same as the class name that you had given input.
 
 <br>
 
@@ -43,7 +43,7 @@ class yourClassName extends WPSeeder
 <br>
 
 If you want to create more seeders for different tables then just repeate the above process.
-<br>Now just run `./vendor/bin/wpseed` in the terminal and data will be stored in the database.
+<br>Now just run `./vendor/bin/wpseed store` in the terminal and data will be stored in the database.
 
 <br>
 .
